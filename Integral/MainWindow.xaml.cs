@@ -73,7 +73,7 @@ namespace Integral
                     Convert.ToDouble(_n.Text);
                 }
                 catch {
-                    MessageBox.Show("Не удалось");
+                    MessageBox.Show("Введите целое число");
                     return;
                 } 
             
