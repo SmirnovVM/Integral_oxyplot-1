@@ -73,15 +73,18 @@ namespace Integral
 
 
             this.MyModel3 = new PlotModel { Title = "Столбчатая диаграмма" };
-            //MyModel3.Axes.Add(new LinearAxis
-            //{
-            //    Position = AxisPosition.Left,
-            //    /*Maximum = 150,
-            //    Minimum = 0,*/
-            //    Title = "Время, мск",
-            //    //Title = "Кол-во разбиений, n*100000",
-            //    TitleFontSize = 15,
-            //});
+            MyModel3.Axes.Add(new LinearAxis
+            {
+                Position = AxisPosition.Left,
+                /*Maximum = 150,
+                Minimum = 0,*/
+                Title = "Время, мск",
+                //Title = "Кол-во разбиений, n*100000",
+                TitleFontSize = 15,
+            });
+
+
+
             //MyModel3.Axes.Add(new LinearAxis
             //{
             //    Position = AxisPosition.Bottom,
@@ -91,7 +94,7 @@ namespace Integral
             //    Title = "Кол-во разбиений, n*100000",
             //    TitleFontSize = 10
             //});
-            var series3 = new BarSeries();
+            var series3 = new ColumnSeries();
 
             
 

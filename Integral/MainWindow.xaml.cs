@@ -88,9 +88,11 @@ namespace Integral
         Posl_graph posl = new Posl_graph();
         Paral_graph paral = new Paral_graph();
         Bars bar = new Bars();
+
+        
         private void PoslGraph_Click(object sender, RoutedEventArgs e)
         {
-           // posl.Hide();
+            //posl.Hide();
             posl.culc();
             posl.Show();
 
@@ -107,7 +109,7 @@ namespace Integral
         {
             bar.culc();
             bar.Show();
-
+            
 
         }
     }
