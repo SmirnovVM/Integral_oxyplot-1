@@ -98,7 +98,7 @@ namespace Integral
             series3.StrokeThickness = 1;
             series3.Title = "Параллеьное выполнение программы";
             series4.StrokeThickness = 1;
-            series4.Title = "Последовательное выполнение программы";
+            series4.Title = "Последовательное выполнение программы ";
             
 
             this.MyModel3.Series.Add(series3);
