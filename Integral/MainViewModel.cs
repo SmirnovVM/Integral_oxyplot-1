@@ -17,18 +17,12 @@ namespace Integral
             MyModel1.Axes.Add(new LinearAxis
             {
                 Position = AxisPosition.Bottom,
-                /*Maximum = 150,
-                Minimum = 0,*/
                 Title = "Время, мск",
-                //Title = "Кол-во разбиений, n*100000",
                 TitleFontSize = 15,
             });
             MyModel1.Axes.Add(new LinearAxis
             {
                 Position = AxisPosition.Left,
-                /*  Maximum = 20,
-                  Minimum = 0,*/
-                //Title = "Время, мск",
                 Title = "Кол-во разбиений, n*100000",
                 TitleFontSize = 10
             });
@@ -83,6 +77,11 @@ namespace Integral
                 TitleFontSize = 15,
             });
 
+         /*   MyModel3.Axes.Add(new LinearAxis
+            {
+               
+            });
+
 
 
             //MyModel3.Axes.Add(new LinearAxis
@@ -95,10 +94,15 @@ namespace Integral
             //    TitleFontSize = 10
             //});
             var series3 = new ColumnSeries();
-
+            var series4 = new ColumnSeries();
+            series3.StrokeThickness = 1;
+            series3.Title = "Параллеьное выполнение";
+            series4.StrokeThickness = 1;
+            series4.Title = "Последовательное выполнение";
             
 
             this.MyModel3.Series.Add(series3);
+            this.MyModel3.Series.Add(series4);
 
             // this.MyModel2 = new PlotModel { Title = "График 2" };
 

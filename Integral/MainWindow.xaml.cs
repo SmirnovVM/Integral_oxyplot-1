@@ -107,9 +107,9 @@ namespace Integral
 
         private void barGraph_Click(object sender, RoutedEventArgs e)
         {
+            //bar.Hide();
             bar.culc();
-            bar.Show();
-            
+            bar.Show();            
 
         }
     }

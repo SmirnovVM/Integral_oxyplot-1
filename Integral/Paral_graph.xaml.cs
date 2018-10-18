@@ -31,6 +31,7 @@ namespace Integral
             (graph2.Model.Series[0] as LineSeries).Points.Clear();
             Stopwatch timer = new Stopwatch();
             double n = 100000;
+            double nn = n;
             double In1 = 0;
             int kol = 7;
             Random rnd = new Random();
@@ -38,11 +39,10 @@ namespace Integral
             for (int k = 0; k < kol; k++)
             {
 
-
                 timer.Start();
                 In1 = integ.calcParr(n);
                 timer.Stop();
-                (graph2.Model.Series[0] as LineSeries).Points.Add(new DataPoint(timer.ElapsedMilliseconds, n / 100000));
+                (graph2.Model.Series[0] as LineSeries).Points.Add(new DataPoint(timer.ElapsedMilliseconds, n / nn));
                 timer.Reset();
 
                 timer.Reset();

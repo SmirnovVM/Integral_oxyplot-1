@@ -34,13 +34,15 @@ namespace Integral
 
         public void culc()
         {
-            (graph3.Model.Series[0] as BarSeries).Items.Clear();
+            
             Stopwatch timer = new Stopwatch();
-            double n = 100000;
+            int n = 100000;
+            int nn = n;
             double In1 = 0;
             int kol = 7;
-            Random rnd = new Random();
             Integral_calculate integ = new Integral_calculate();
+            (graph3.Model.Series[0] as ColumnSeries).Items.Clear();
+            (graph3.Model.Series[1] as ColumnSeries).Items.Clear();
             for (int k = 0; k < kol; k++)
             {
 
@@ -48,16 +50,25 @@ namespace Integral
                 timer.Start();
                 In1 = integ.calcParr(n);
                 timer.Stop();
-                (graph3.Model.Series[0] as BarSeries).Items.Add(new BarItem(timer.ElapsedMilliseconds, (int)n / 100000));         //new DataPoint(timer.ElapsedMilliseconds, n / 100000));
+                (graph3.Model.Series[0] as ColumnSeries).Items.Add(new ColumnItem(timer.ElapsedMilliseconds, n / nn-1));
                 timer.Reset();
 
+               // graph3.InvalidatePlot();
+
+                timer.Start();
+                In1 = integ.calcPosl(n);
+                timer.Stop();
+                //  (graph3.Model.Series[0] as ColumnSeries).Background.color
+
+                (graph3.Model.Series[1] as ColumnSeries).Items.Add(new ColumnItem(timer.ElapsedMilliseconds, n / nn-1));
                 timer.Reset();
 
                 graph3.InvalidatePlot();
-                // MessageBox.Show(In1 + "  " + In2);
+                // MessageBox.Show(Convert.ToString(k));
+
                 n *= 2;
             }
-            graph3.InvalidatePlot();
+
         }
 
 

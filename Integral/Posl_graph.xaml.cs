@@ -33,6 +33,7 @@ namespace Integral
             (graph1.Model.Series[0] as LineSeries).Points.Clear();
             Stopwatch timer = new Stopwatch();
             double n = 100000;
+            double nn = n;
             double In1 = 0;
             int kol = 7;
             Random rnd = new Random();
@@ -44,7 +45,7 @@ namespace Integral
                 timer.Start();
                 In1 = integ.calcPosl(n);
                 timer.Stop();
-                (graph1.Model.Series[0] as LineSeries).Points.Add(new DataPoint(timer.ElapsedMilliseconds, n / 100000));
+                (graph1.Model.Series[0] as LineSeries).Points.Add(new DataPoint(timer.ElapsedMilliseconds, n / nn));
                 timer.Reset();
 
                 timer.Reset();
