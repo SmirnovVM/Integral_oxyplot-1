@@ -33,7 +33,7 @@ namespace Integral
             double n = 100000;
             double nn = n;
             double In1 = 0;
-            int kol = 7;
+            int kol = 5;
             Random rnd = new Random();
             Integral_calculate integ = new Integral_calculate();
             for (int k = 0; k < kol; k++)
