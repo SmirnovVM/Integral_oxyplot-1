@@ -96,9 +96,9 @@ namespace Integral
             var series3 = new ColumnSeries();
             var series4 = new ColumnSeries();
             series3.StrokeThickness = 1;
-            series3.Title = "Параллеьное выполнение";
+            series3.Title = "Параллеьное выполнение программы";
             series4.StrokeThickness = 1;
-            series4.Title = "Последовательное выполнение";
+            series4.Title = "Последовательное выполнение программы";
             
 
             this.MyModel3.Series.Add(series3);
