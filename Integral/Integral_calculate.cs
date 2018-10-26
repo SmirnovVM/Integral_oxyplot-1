@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Integral
 {
-    class Integral_calculate
+    public class Integral_calculate
     {
         double f(double x)
         {
@@ -26,6 +26,7 @@ namespace Integral
 
         public double calcPosl(int n, double a, double b, Func<double, double> f)
         {
+           
             y = 0;
             dy = (b - a) / n;
             y += f(a) + f(b);
