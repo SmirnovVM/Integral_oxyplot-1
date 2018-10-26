@@ -38,6 +38,8 @@ namespace Integral
             Stopwatch timer = new Stopwatch();
             int n = 100000;
             int nn = n;
+            double a = 1;
+            double b = 100000;
             double In1 = 0;
             int kol = 7;
             Integral_calculate integ = new Integral_calculate();
@@ -48,7 +50,7 @@ namespace Integral
 
 
                 timer.Start();
-                In1 = integ.calcParr(n);
+                In1 = integ.calcParr(n, a, b, x => 32 * x - Math.Log10(2 * x) - 41);
                 timer.Stop();
                 (graph3.Model.Series[0] as ColumnSeries).Items.Add(new ColumnItem(timer.ElapsedMilliseconds, n / nn-1));
                 timer.Reset();
@@ -56,7 +58,7 @@ namespace Integral
                // graph3.InvalidatePlot();
 
                 timer.Start();
-                In1 = integ.calcPosl(n);
+                In1 = integ.calcPosl(n, a, b, x => 32 * x - Math.Log10(2 * x) - 41);
                 timer.Stop();
                 //  (graph3.Model.Series[0] as ColumnSeries).Background.color
 

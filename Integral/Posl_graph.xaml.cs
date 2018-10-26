@@ -32,10 +32,12 @@ namespace Integral
         {
             (graph1.Model.Series[0] as LineSeries).Points.Clear();
             Stopwatch timer = new Stopwatch();
-            double n = 100000;
-            double nn = n;
+            int n = 100000;
+            int nn = n;
             double In1 = 0;
             int kol = 7;
+            double a = 1;
+            double b = 100000;
             Random rnd = new Random();
             Integral_calculate integ = new Integral_calculate();
             for (int k = 0; k < kol; k++)
@@ -43,7 +45,7 @@ namespace Integral
 
 
                 timer.Start();
-                In1 = integ.calcPosl(n);
+                In1 = integ.calcPosl(n, a, b, x => 32 * x - Math.Log10(2 * x) - 41);
                 timer.Stop();
                 (graph1.Model.Series[0] as LineSeries).Points.Add(new DataPoint(timer.ElapsedMilliseconds, n / nn));
                 timer.Reset();

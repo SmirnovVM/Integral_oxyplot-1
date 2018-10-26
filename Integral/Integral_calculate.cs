@@ -17,11 +17,14 @@ namespace Integral
             return ((b - a) / (2 * n) * y);
         }
 
-        double a = 1;
-        double b = 100000;
+        /*double a = 1;
+        double b = 100000;*/
         public double y = 0, dy;
         double In;
-        public double calcPosl(double n)
+
+        //Func<double,double>func = x => x*x;
+
+        public double calcPosl(int n, double a, double b, Func<double, double> f)
         {
             y = 0;
             dy = (b - a) / n;
@@ -36,7 +39,7 @@ namespace Integral
             return In = I(a, b, n, y);
         }
 
-        public double calcParr(double n)
+        public double calcParr(int n, double a, double b, Func<double, double> f)
         {
             object monitor = new object();
             y = 0;

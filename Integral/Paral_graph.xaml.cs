@@ -30,8 +30,10 @@ namespace Integral
         public void culc() {
             (graph2.Model.Series[0] as LineSeries).Points.Clear();
             Stopwatch timer = new Stopwatch();
-            double n = 100000;
-            double nn = n;
+            int n = 100000;
+            int nn = n;
+            double a = 1;
+            double b = 100000;
             double In1 = 0;
             int kol = 7;
             Random rnd = new Random();
@@ -40,7 +42,7 @@ namespace Integral
             {
 
                 timer.Start();
-                In1 = integ.calcParr(n);
+                In1 = integ.calcParr(n, a, b, x => 32 * x - Math.Log10(2 * x) - 41);
                 timer.Stop();
                 (graph2.Model.Series[0] as LineSeries).Points.Add(new DataPoint(timer.ElapsedMilliseconds, n / nn));
                 timer.Reset();

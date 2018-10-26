@@ -39,12 +39,14 @@ namespace Integral
 
         void Calculate() {
             Integral_calculate integral = new Integral_calculate();
-            double n = Convert.ToDouble(this._n.Text);
+            int n = Convert.ToInt32(this._n.Text);
             double In;
+            double a = 1;
+            double b = 100000;
             Stopwatch timer = new Stopwatch();
             if (_check.IsChecked.Value == true) {
                 timer.Start();
-                In = integral.calcParr(n);
+                In = integral.calcParr(n, a, b, x => 32 * x - Math.Log10(2 * x) - 41);
                 timer.Stop();
                 this._resultText.Text = Convert.ToString(In);
                 this._timeText.Text = Convert.ToString(timer.ElapsedMilliseconds);
@@ -53,7 +55,7 @@ namespace Integral
             if (_check.IsChecked.Value == false)
             {
                 timer.Start();
-                In = integral.calcPosl(n);
+                In = integral.calcPosl(n, a, b, x => 32 * x - Math.Log10(2 * x) - 41);
                 timer.Stop();
                 this._resultText.Text = Convert.ToString(In);
                 this._timeText.Text = Convert.ToString(timer.ElapsedMilliseconds);
