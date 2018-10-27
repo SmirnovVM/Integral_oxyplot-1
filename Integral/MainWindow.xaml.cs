@@ -28,23 +28,26 @@ namespace Integral
 
         }
 
-        
 
-        void Default() {
+
+        void Default()
+        {
             _resultText.Text = "";
             _timeText.Text = "";
-           
+
         }
 
 
-        void Calculate() {
+        void Calculate()
+        {
             Integral_calculate integral = new Integral_calculate();
             int n = Convert.ToInt32(this._n.Text);
             double In;
             double a = 1;
             double b = 100000;
             Stopwatch timer = new Stopwatch();
-            if (_check.IsChecked.Value == true) {
+            if (_check.IsChecked.Value == true)
+            {
                 timer.Start();
                 In = integral.calcParr(n, a, b, x => 32 * x - Math.Log10(2 * x) - 41);
                 timer.Stop();
@@ -68,33 +71,39 @@ namespace Integral
 
         private void ButtonCulc_Click(object sender, RoutedEventArgs e)
         {
-           // if ()
-          ///  double.TryParse
-                try 
-                {
-                    Convert.ToDouble(_n.Text);
-                }
-                catch {
-                    MessageBox.Show("Введите целое число");
-                    return;
-                } 
-            
+            // if ()
+            ///  double.TryParse
+            try
             {
-                Default();
-                Calculate();
+                Convert.ToDouble(_n.Text);
             }
-           /* else {
+            catch
+            {
                 MessageBox.Show("Введите целое число");
-            }*/
+                return;
+            }
+
+            if (Convert.ToDouble(_n.Text) <= 0) {
+                MessageBox.Show("Введите n больше 0");
+                return;
+            }
+            
+
+
+            Default();
+            Calculate();
+
+            /* else {
+                 MessageBox.Show("Введите целое число");
+             }*/
         }
         Posl_graph posl = new Posl_graph();
         Paral_graph paral = new Paral_graph();
         Bars bar = new Bars();
 
-        
+
         private void PoslGraph_Click(object sender, RoutedEventArgs e)
         {
-            //posl.Hide();
             posl.culc();
             posl.Show();
 
@@ -102,16 +111,14 @@ namespace Integral
 
         private void ParalGraph_Click(object sender, RoutedEventArgs e)
         {
-           // paral.Hide();
             paral.culc();
             paral.Show();
         }
 
         private void barGraph_Click(object sender, RoutedEventArgs e)
         {
-            //bar.Hide();
             bar.culc();
-            bar.Show();            
+            bar.Show();
 
         }
     }
