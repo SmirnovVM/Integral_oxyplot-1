@@ -28,7 +28,7 @@ namespace Integral
 
         }
 
-        public void culc()
+        public void culc(double a, double b)
         {
             (graph1.Model.Series[0] as LineSeries).Points.Clear();
             Stopwatch timer = new Stopwatch();
@@ -36,8 +36,6 @@ namespace Integral
             int nn = n;
             double In1 = 0;
             int kol = 7;
-            double a = 1;
-            double b = 100000;
             Random rnd = new Random();
             Integral_calculate integ = new Integral_calculate();
             for (int k = 0; k < kol; k++)

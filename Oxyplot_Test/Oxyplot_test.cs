@@ -61,7 +61,6 @@ namespace Oxyplot_Test
             double b = 0;
             int n = 100000;
             Func<double, double> f = x => x * x;
-            double exact_result = 333333.333;
             Integral_calculate integr = new Integral_calculate();
             Stopwatch timer_posl = new Stopwatch();
             Stopwatch timer_paral = new Stopwatch();

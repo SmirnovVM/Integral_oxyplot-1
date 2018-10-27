@@ -32,14 +32,12 @@ namespace Integral
 
 
 
-        public void culc()
+        public void culc(double a, double b)
         {
             
             Stopwatch timer = new Stopwatch();
             int n = 100000;
             int nn = n;
-            double a = 1;
-            double b = 100000;
             double In1 = 0;
             int kol = 7;
             Integral_calculate integ = new Integral_calculate();

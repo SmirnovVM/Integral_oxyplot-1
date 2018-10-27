@@ -36,15 +36,17 @@ namespace Integral
             _timeText.Text = "";
 
         }
-
+        double a;
+        double b;
 
         void Calculate()
         {
             Integral_calculate integral = new Integral_calculate();
             int n = Convert.ToInt32(this._n.Text);
+
             double In;
-            double a = 1;
-            double b = 100000;
+            a = Convert.ToInt32(this._a.Text); ;
+            b = Convert.ToInt32(this._b.Text); ;
             Stopwatch timer = new Stopwatch();
             if (_check.IsChecked.Value == true)
             {
@@ -104,20 +106,20 @@ namespace Integral
 
         private void PoslGraph_Click(object sender, RoutedEventArgs e)
         {
-            posl.culc();
+            posl.culc(a,b);
             posl.Show();
 
         }
 
         private void ParalGraph_Click(object sender, RoutedEventArgs e)
         {
-            paral.culc();
+            paral.culc(a, b);
             paral.Show();
         }
 
         private void barGraph_Click(object sender, RoutedEventArgs e)
         {
-            bar.culc();
+            bar.culc(a, b);
             bar.Show();
 
         }

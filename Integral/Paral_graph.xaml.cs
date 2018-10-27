@@ -27,13 +27,11 @@ namespace Integral
             InitializeComponent();
             
         }
-        public void culc() {
+        public void culc(double a, double b) {
             (graph2.Model.Series[0] as LineSeries).Points.Clear();
             Stopwatch timer = new Stopwatch();
             int n = 100000;
             int nn = n;
-            double a = 1;
-            double b = 100000;
             double In1 = 0;
             int kol = 7;
             Random rnd = new Random();
