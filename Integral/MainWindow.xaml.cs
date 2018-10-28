@@ -31,7 +31,7 @@ namespace Integral
         double a;
         double b;
 
-        public void Read_n()
+        public bool Read_n()
         {
             n = Convert.ToInt32(this._n.Text);
 
@@ -42,24 +42,31 @@ namespace Integral
             catch
             {
                 MessageBox.Show("Введите целое число");
-                return;
+                return false;
             }
 
             if (Convert.ToDouble(_n.Text) <= 0)
             {
                 MessageBox.Show("Введите n больше 0");
-                return;
+                return false;
+            }
+            else {
+                return true;
             }
         }
 
 
-        public void Read_A_B() {
+        public bool Read_A_B() {
             a = Convert.ToInt32(this._a.Text);
             b = Convert.ToInt32(this._b.Text);
             if (Convert.ToDouble(_a.Text) >= Convert.ToDouble(_b.Text))
             {
                 MessageBox.Show("Нижняя граница не должна превышать или быть равной верхней");
-                return;
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
 
@@ -70,8 +77,7 @@ namespace Integral
         {
             _resultText.Text = "";
             _timeText.Text = "";
-            Read_A_B();
-            Read_n();
+            
 
         }
         
@@ -108,8 +114,16 @@ namespace Integral
         {
             // if ()
             ///  double.TryParse
-     
 
+           /* Read_A_B();
+            Read_n();*/
+            if (Read_A_B() == false) {
+                return;
+            }
+            if (Read_n() == false)
+            {
+                return;
+            }
             Default();
             Calculate();
 
