@@ -45,8 +45,8 @@ namespace Integral
             int n = Convert.ToInt32(this._n.Text);
 
             double In;
-            a = Convert.ToInt32(this._a.Text); ;
-            b = Convert.ToInt32(this._b.Text); ;
+            a = Convert.ToInt32(this._a.Text);
+            b = Convert.ToInt32(this._b.Text);
             Stopwatch timer = new Stopwatch();
             if (_check.IsChecked.Value == true)
             {
@@ -89,6 +89,12 @@ namespace Integral
                 MessageBox.Show("Введите n больше 0");
                 return;
             }
+
+
+            if (Convert.ToDouble(_a.Text) >= Convert.ToDouble(_b.Text)) {
+                MessageBox.Show("Нижняя граница не должна превышать или быть равной верхней");
+                return;
+            }
             
 
 
@@ -106,6 +112,11 @@ namespace Integral
 
         private void PoslGraph_Click(object sender, RoutedEventArgs e)
         {
+            if (Convert.ToDouble(_a.Text) >= Convert.ToDouble(_b.Text))
+            {
+                MessageBox.Show("Нижняя граница не должна превышать или быть равной верхней");
+                return;
+            }
             posl.culc(a,b);
             posl.Show();
 
@@ -113,12 +124,22 @@ namespace Integral
 
         private void ParalGraph_Click(object sender, RoutedEventArgs e)
         {
+            if (Convert.ToDouble(_a.Text) >= Convert.ToDouble(_b.Text))
+            {
+                MessageBox.Show("Нижняя граница не должна превышать или быть равной верхней");
+                return;
+            }
             paral.culc(a, b);
             paral.Show();
         }
 
         private void barGraph_Click(object sender, RoutedEventArgs e)
         {
+            if (Convert.ToDouble(_a.Text) >= Convert.ToDouble(_b.Text))
+            {
+                MessageBox.Show("Нижняя граница не должна превышать или быть равной верхней");
+                return;
+            }
             bar.culc(a, b);
             bar.Show();
 
