@@ -27,6 +27,42 @@ namespace Integral
             InitializeComponent();
 
         }
+        int n;
+        double a;
+        double b;
+
+        public void Read_n()
+        {
+            n = Convert.ToInt32(this._n.Text);
+
+            try
+            {
+                Convert.ToDouble(_n.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Введите целое число");
+                return;
+            }
+
+            if (Convert.ToDouble(_n.Text) <= 0)
+            {
+                MessageBox.Show("Введите n больше 0");
+                return;
+            }
+        }
+
+
+        public void Read_A_B() {
+            a = Convert.ToInt32(this._a.Text);
+            b = Convert.ToInt32(this._b.Text);
+            if (Convert.ToDouble(_a.Text) >= Convert.ToDouble(_b.Text))
+            {
+                MessageBox.Show("Нижняя граница не должна превышать или быть равной верхней");
+                return;
+            }
+        }
+
 
 
 
@@ -34,24 +70,21 @@ namespace Integral
         {
             _resultText.Text = "";
             _timeText.Text = "";
+            Read_A_B();
+            Read_n();
 
         }
-        double a;
-        double b;
+        
 
         void Calculate()
         {
             Integral_calculate integral = new Integral_calculate();
-            int n = Convert.ToInt32(this._n.Text);
-
             double In;
-            a = Convert.ToInt32(this._a.Text);
-            b = Convert.ToInt32(this._b.Text);
             Stopwatch timer = new Stopwatch();
             if (_check.IsChecked.Value == true)
             {
                 timer.Start();
-                In = integral.calcParr(n, a, b, x => 32 * x - Math.Log10(2 * x) - 41);
+                In = integral.calcParr(n, a, b, x => (32 * x - Math.Log10(2 * x) - 41));
                 timer.Stop();
                 this._resultText.Text = Convert.ToString(In);
                 this._timeText.Text = Convert.ToString(timer.ElapsedMilliseconds);
@@ -75,28 +108,7 @@ namespace Integral
         {
             // if ()
             ///  double.TryParse
-            try
-            {
-                Convert.ToDouble(_n.Text);
-            }
-            catch
-            {
-                MessageBox.Show("Введите целое число");
-                return;
-            }
-
-            if (Convert.ToDouble(_n.Text) <= 0) {
-                MessageBox.Show("Введите n больше 0");
-                return;
-            }
-
-
-            if (Convert.ToDouble(_a.Text) >= Convert.ToDouble(_b.Text)) {
-                MessageBox.Show("Нижняя граница не должна превышать или быть равной верхней");
-                return;
-            }
-            
-
+     
 
             Default();
             Calculate();

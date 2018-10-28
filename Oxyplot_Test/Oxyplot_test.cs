@@ -17,7 +17,6 @@ namespace Oxyplot_Test
             Func<double, double> f = x => x * x;
             double exact_result = 333333.333;
             Integral_calculate integr = new Integral_calculate();
-
             double real_result = integr.calcPosl(n, a, b, f);
 
             Assert.AreEqual(real_result, exact_result, 0.001);
@@ -25,6 +24,7 @@ namespace Oxyplot_Test
         }
 
         [TestMethod]
+        [ExpectedException(typeof(Exception))]
         public void Test_Integral_minus_n()
         {
             double a = 0;
@@ -40,6 +40,7 @@ namespace Oxyplot_Test
         }
 
         [TestMethod]
+        [ExpectedException(typeof(Exception))]
         public void Test_Integral_a_greater_b()
         {
             double a = 100;
@@ -57,8 +58,8 @@ namespace Oxyplot_Test
         [TestMethod]
         public void Test_Integral_speed_run()
         {
-            double a = 100;
-            double b = 0;
+            double a = 1;
+            double b = 10000;
             int n = 100000;
             Func<double, double> f = x => x * x;
             Integral_calculate integr = new Integral_calculate();

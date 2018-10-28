@@ -20,7 +20,11 @@ namespace Integral
         public double calcPosl(int n, double a, double b, Func<double, double> f)
         {
             if (n <= 0)
-                throw new ArgumentException();
+               throw new Exception();
+
+            if(a>=b)
+                throw new Exception();
+              
             y = 0;
             dy = (b - a) / n;
             y += f(a) + f(b);
