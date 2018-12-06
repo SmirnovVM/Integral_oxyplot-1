@@ -24,6 +24,21 @@ namespace Oxyplot_Test
         }
 
         [TestMethod]
+        public void Test_Integral_posl_and_parallel()
+        {
+            double a = 0;
+            double b = 100;
+            int n = 100000;
+            Func<double, double> f = x => x * x;
+            Integral_calculate integr = new Integral_calculate();
+            double real_result_posl = integr.calcPosl(n, a, b, f);
+            double real_result_parallel = integr.calcParr(n, a, b, f);
+
+            Assert.AreEqual(real_result_posl, real_result_parallel, 0.001);
+
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(Exception))]
         public void Test_Integral_minus_n()
         {

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
+using System.Threading;
 
 namespace Integral
 {
@@ -25,6 +26,7 @@ namespace Integral
         public MainWindow()
         {
             InitializeComponent();
+            foto.Visibility = Visibility.Hidden;
 
         }
         int n;
@@ -50,13 +52,15 @@ namespace Integral
                 MessageBox.Show("Введите n больше 0");
                 return false;
             }
-            else {
+            else
+            {
                 return true;
             }
         }
 
 
-        public bool Read_A_B() {
+        public bool Read_A_B()
+        {
             a = Convert.ToInt32(this._a.Text);
             b = Convert.ToInt32(this._b.Text);
             if (Convert.ToDouble(_a.Text) >= Convert.ToDouble(_b.Text))
@@ -77,47 +81,64 @@ namespace Integral
         {
             _resultText.Text = "";
             _timeText.Text = "";
-            
+
 
         }
-        
+
 
         void Calculate()
         {
+            ButtonCulc.IsEnabled = false;
+            foto.Visibility = Visibility.Visible;
+            Task task;
             Integral_calculate integral = new Integral_calculate();
             double In;
             Stopwatch timer = new Stopwatch();
             if (_check.IsChecked.Value == true)
             {
-                timer.Start();
-                In = integral.calcParr(n, a, b, x => (32 * x - Math.Log10(2 * x) - 41));
-                timer.Stop();
-                this._resultText.Text = Convert.ToString(In);
-                this._timeText.Text = Convert.ToString(timer.ElapsedMilliseconds);
-                timer.Reset();
+                task = Task.Run(() =>
+                {
+                    timer.Start();
+                    In = integral.calcParr(n, a, b, x => 32 * x - Math.Log10(2 * x) - 41);
+                    timer.Stop();
+
+                    Dispatcher.Invoke(() =>
+                    {
+                        this._resultText.Text = Convert.ToString(In);
+                        this._timeText.Text = Convert.ToString(timer.ElapsedMilliseconds);
+                        ButtonCulc.IsEnabled = true;
+                        foto.Visibility = Visibility.Hidden;
+                    });
+
+                    timer.Reset();
+                });
+
             }
             if (_check.IsChecked.Value == false)
             {
-                timer.Start();
-                In = integral.calcPosl(n, a, b, x => 32 * x - Math.Log10(2 * x) - 41);
-                timer.Stop();
-                this._resultText.Text = Convert.ToString(In);
-                this._timeText.Text = Convert.ToString(timer.ElapsedMilliseconds);
-                timer.Reset();
+                task = Task.Run(() =>
+                {
+                    timer.Start();
+                    In = integral.calcPosl(n, a, b, x => 32 * x - Math.Log10(2 * x) - 41);
+                    timer.Stop();
+                    Dispatcher.Invoke(() =>
+                    {
+                        this._resultText.Text = Convert.ToString(In);
+                        this._timeText.Text = Convert.ToString(timer.ElapsedMilliseconds);
+                        ButtonCulc.IsEnabled = true;
+                        foto.Visibility = Visibility.Hidden;
+                    });
+
+                    timer.Reset();
+                });
+
             }
-
-
-
         }
 
         private void ButtonCulc_Click(object sender, RoutedEventArgs e)
         {
-            // if ()
-            ///  double.TryParse
-
-           /* Read_A_B();
-            Read_n();*/
-            if (Read_A_B() == false) {
+            if (Read_A_B() == false)
+            {
                 return;
             }
             if (Read_n() == false)
@@ -126,10 +147,6 @@ namespace Integral
             }
             Default();
             Calculate();
-
-            /* else {
-                 MessageBox.Show("Введите целое число");
-             }*/
         }
         Posl_graph posl = new Posl_graph();
         Paral_graph paral = new Paral_graph();
@@ -138,21 +155,27 @@ namespace Integral
 
         private void PoslGraph_Click(object sender, RoutedEventArgs e)
         {
-            if (Convert.ToDouble(_a.Text) >= Convert.ToDouble(_b.Text))
+            if (Read_A_B() == false)
             {
-                MessageBox.Show("Нижняя граница не должна превышать или быть равной верхней");
                 return;
             }
-            posl.culc(a,b);
+            if (Read_n() == false)
+            {
+                return;
+            }
+            posl.culc(a, b);
             posl.Show();
 
         }
 
         private void ParalGraph_Click(object sender, RoutedEventArgs e)
         {
-            if (Convert.ToDouble(_a.Text) >= Convert.ToDouble(_b.Text))
+            if (Read_A_B() == false)
             {
-                MessageBox.Show("Нижняя граница не должна превышать или быть равной верхней");
+                return;
+            }
+            if (Read_n() == false)
+            {
                 return;
             }
             paral.culc(a, b);
@@ -161,9 +184,12 @@ namespace Integral
 
         private void barGraph_Click(object sender, RoutedEventArgs e)
         {
-            if (Convert.ToDouble(_a.Text) >= Convert.ToDouble(_b.Text))
+            if (Read_A_B() == false)
             {
-                MessageBox.Show("Нижняя граница не должна превышать или быть равной верхней");
+                return;
+            }
+            if (Read_n() == false)
+            {
                 return;
             }
             bar.culc(a, b);
