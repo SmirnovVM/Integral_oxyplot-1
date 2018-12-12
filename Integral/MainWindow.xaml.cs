@@ -44,6 +44,7 @@ namespace Integral
             double a = 1;
             double b = 100000;
             Stopwatch timer = new Stopwatch();
+            //Подсчёт интеграла параллельно
             if (_check.IsChecked.Value == true) {
                 timer.Start();
                 In = integral.calcParr(n, a, b, x => 32 * x - Math.Log10(2 * x) - 41);
